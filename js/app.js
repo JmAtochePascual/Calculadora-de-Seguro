@@ -25,20 +25,26 @@ UI.prototype.validarFormulario = (event) => {
   const tipoElement = document.querySelector('input[name="tipo"]:checked').value;
 
   if ([marcaElement, yearElement, tipoElement].includes('')) {
-    ui.mostrarMensaje('Todos los campos son obligatorios');
+    ui.mostrarMensaje('Todos los campos son obligatorios', false);
     return;
   }
 };
 
 // Muestra alertas en pantalla
-UI.prototype.mostrarMensaje = (mensaje) => {
-  const contenidoElement = document.querySelector('#contenido');
+UI.prototype.mostrarMensaje = (mensaje, tipo = true) => {
+  const formularioElement = document.querySelector('#cotizar-seguro');
 
   const divElement = document.createElement('div');
-  divElement.classList.add('error');
+  divElement.classList.add('mensaje', 'mt-10');
   divElement.textContent = mensaje;
 
-  contenidoElement.appendChild(divElement);
+  tipo ? divElement.classList.add('correcto') : divElement.classList.add('error');
+
+  formularioElement.insertBefore(divElement, document.querySelector('#resultado'));
+
+  setTimeout(() => {
+    divElement.remove();
+  }, 3000);
 };
 
 
