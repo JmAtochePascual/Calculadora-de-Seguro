@@ -15,6 +15,18 @@ UI.prototype.llenarYear = () => {
   };
 };
 
+// Muestra alertas en pantalla
+UI.prototype.mostrarMensaje = (mensaje) => {
+  const contenidoElement = document.querySelector('.contenido');
+
+  const divElement = document.createElement('div');
+  divElement.classList.add('error');
+  divElement.textContent = mensaje;
+
+  contenidoElement.appendChild(divElement);
+};
+
+
 const ui = new UI();
 
 
