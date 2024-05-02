@@ -1,3 +1,34 @@
+function Seguro(marca, year, tipo) {
+  this.marca = marca;
+  this.year = year;
+  this.tipo = tipo;
+};
+
+Seguro.prototype.cotizarSeguro = function () {
+  /*
+    1 = Americano 1.15
+    2 = Asiatico 1.05
+    3 = Europeo 1.35
+  */
+  let cantidad;
+  const base = 2000;
+
+  switch (this.marca) {
+    case '1':
+      cantidad = base * 1.15;
+      break;
+    case '2':
+      cantidad = base * 1.05;
+      break;
+    case '3':
+      cantidad = base * 1.35;
+      break;
+    default:
+      break;
+  };
+
+  console.log(cantidad);
+};
 
 function UI() { };
 
@@ -20,14 +51,21 @@ UI.prototype.llenarYear = () => {
 UI.prototype.validarFormulario = (event) => {
   event.preventDefault();
 
-  const marcaElement = document.querySelector('#marca').value;
-  const yearElement = document.querySelector('#year').value;
-  const tipoElement = document.querySelector('input[name="tipo"]:checked').value;
+  const marca = document.querySelector('#marca').value;
+  const year = document.querySelector('#year').value;
+  const tipo = document.querySelector('input[name="tipo"]:checked').value;
 
-  if ([marcaElement, yearElement, tipoElement].includes('')) {
+  if ([marca, year, tipo].includes('')) {
     ui.mostrarMensaje('Todos los campos son obligatorios', false);
     return;
   }
+
+  ui.mostrarMensaje('Cotizando...', true);
+
+  const seguro = new Seguro(marca, year, tipo);
+
+  seguro.cotizarSeguro();
+
 };
 
 // Muestra alertas en pantalla
