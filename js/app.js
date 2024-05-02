@@ -105,6 +105,11 @@ UI.prototype.mostrarResultado = (seguro, total) => {
   const resultadoElement = document.querySelector('#resultado');
   const spinner = document.querySelector('#cargando');
 
+  // Limpiar Html
+  while (resultadoElement.firstChild) {
+    resultadoElement.removeChild(resultadoElement.firstChild);
+  };
+
   const divElement = document.createElement('div');
   divElement.classList.add('mt-10');
   divElement.innerHTML = `
