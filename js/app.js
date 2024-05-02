@@ -1,3 +1,4 @@
+
 function UI() { };
 
 // Llenar las opciones de año
@@ -15,9 +16,23 @@ UI.prototype.llenarYear = () => {
   };
 };
 
+// Validar formulario
+UI.prototype.validarFormulario = (event) => {
+  event.preventDefault();
+
+  const marcaElement = document.querySelector('#marca').value;
+  const yearElement = document.querySelector('#year').value;
+  const tipoElement = document.querySelector('input[name="tipo"]:checked').value;
+
+  if ([marcaElement, yearElement, tipoElement].includes('')) {
+    ui.mostrarMensaje('Todos los campos son obligatorios');
+    return;
+  }
+};
+
 // Muestra alertas en pantalla
 UI.prototype.mostrarMensaje = (mensaje) => {
-  const contenidoElement = document.querySelector('.contenido');
+  const contenidoElement = document.querySelector('#contenido');
 
   const divElement = document.createElement('div');
   divElement.classList.add('error');
@@ -29,7 +44,9 @@ UI.prototype.mostrarMensaje = (mensaje) => {
 
 const ui = new UI();
 
-
 document.addEventListener('DOMContentLoaded', () => {
+  const formularioElement = document.querySelector('#cotizar-seguro');
+
   ui.llenarYear();
+  formularioElement.addEventListener('submit', ui.validarFormulario);
 });
