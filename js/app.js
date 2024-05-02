@@ -27,7 +27,18 @@ Seguro.prototype.cotizarSeguro = function () {
       break;
   };
 
-  console.log(cantidad);
+  // cada año que la diferencia es mayor, el costo se reduce un 3%
+  const diferencia = new Date().getFullYear() - this.year;
+  cantidad -= ((diferencia * 3) * cantidad) / 100;
+
+
+  /*
+    Si el seguro es básico se multiplica por 30% más
+    Si el seguro es completo se multiplica por 50% más
+  */
+  this.tipo === 'basico' ? cantidad *= 1.30 : cantidad *= 1.50;
+
+  return cantidad;
 };
 
 function UI() { };
@@ -64,8 +75,9 @@ UI.prototype.validarFormulario = (event) => {
 
   const seguro = new Seguro(marca, year, tipo);
 
-  seguro.cotizarSeguro();
+  const total = seguro.cotizarSeguro();
 
+  ui.mostrarResultado(seguro, total);
 };
 
 // Muestra alertas en pantalla
@@ -83,6 +95,35 @@ UI.prototype.mostrarMensaje = (mensaje, tipo = true) => {
   setTimeout(() => {
     divElement.remove();
   }, 3000);
+};
+
+UI.prototype.mostrarResultado = (seguro, total) => {
+  const { marca, year, tipo } = seguro;
+  const marcas = ['Americano', 'Asiatico', 'Europeo'];
+  const textoMarca = marcas[marca - 1];
+
+  const resultadoElement = document.querySelector('#resultado');
+  const spinner = document.querySelector('#cargando');
+
+  const divElement = document.createElement('div');
+  divElement.classList.add('mt-10');
+  divElement.innerHTML = `
+    <p class="header">Tu resumen:</p>
+    <p class="font-bold">Marca: <span class="font-normal">${textoMarca}</span></p>
+    <p class="font-bold">Año: <span class="font-normal">${year}</span></p>
+    <p class="font-bold">Tipo: <span class="font-normal">${tipo}</span></p>
+    <p class="font-bold">Total: <span class="font-normal">$ ${total}</span></p>
+  `;
+
+  // Mostrar spinner
+  spinner.style.display = 'block';
+
+  // Ocultar spinner y mostrar resultado
+  setTimeout(() => {
+    spinner.style.display = 'none';
+    resultadoElement.appendChild(divElement);
+  }, 3000);
+
 };
 
 
