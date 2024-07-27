@@ -31,6 +31,9 @@ const validarDatosFormulario = (datosFormulario) => Object.values(datosFormulari
 // Mostrar alerta
 const mostrarAlerta = (mensaje, tipo) => {
 
+  // Limpiar resultado anterior
+  limpiarHtml();
+
   // Validar si ya existe una alerta 
   const alertaExistente = document.querySelector('.mensaje');
   if (alertaExistente) return;
@@ -105,8 +108,9 @@ const mostrarResultado = (datosSeguro) => {
   }
 
   const div = document.createElement('div');
-  div.className = 'resultado';
+  div.classList.add('mt-10');
 
+  // Crear resumen
   const texto = `
     <p class="header">Resumen:</p>
     <p class="font-bold">Marca: <span class="font-normal">${marcas[marca]}</span></p>
@@ -120,6 +124,14 @@ const mostrarResultado = (datosSeguro) => {
   document.querySelector('#resultado').appendChild(div);
 };
 
+// Limpiar html
+const limpiarHtml = () => {
+  const resultado = document.querySelector('#resultado');
+
+  while (resultado.firstChild) {
+    resultado.removeChild(resultado.firstChild);
+  }
+};
 
 export {
   cargarYears,
