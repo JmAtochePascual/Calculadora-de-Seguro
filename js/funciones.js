@@ -27,7 +27,11 @@ const obtenerDatosFormulario = () => {
 };
 
 
+// Validar datos del formulario
+const validarDatosFormulario = (datosFormulario) => Object.values(datosFormulario).every(valor => valor !== '');
+
 export {
   cargarYears,
-  obtenerDatosFormulario
+  obtenerDatosFormulario,
+  validarDatosFormulario
 }

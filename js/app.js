@@ -1,4 +1,4 @@
-import { cargarYears, obtenerDatosFormulario } from "./funciones.js";
+import { cargarYears, obtenerDatosFormulario, validarDatosFormulario } from "./funciones.js";
 import { formularioElement } from "./selectores.js";
 
 
@@ -8,6 +8,9 @@ const init = (e) => {
 
   // Obtener datos del formulario
   const datosFormulario = obtenerDatosFormulario();
+
+  // Validar datos del formulario
+  const esDatosValidos = validarDatosFormulario(datosFormulario);
 
 };
 
