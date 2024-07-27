@@ -1,4 +1,4 @@
-import { selecMarcaElement, selecYearElement } from "./selectores.js";
+import { formularioElement, selecMarcaElement, selecYearElement } from "./selectores.js";
 
 // Cargar years
 const cargarYears = () => {
@@ -30,8 +30,32 @@ const obtenerDatosFormulario = () => {
 // Validar datos del formulario
 const validarDatosFormulario = (datosFormulario) => Object.values(datosFormulario).every(valor => valor !== '');
 
+
+// Mostrar alerta
+const mostrarAlerta = (mensaje, tipo) => {
+
+  // Validar si ya existe una alerta 
+  const alertaExistente = document.querySelector('.mensaje');
+  if (alertaExistente) return;
+
+
+  // Crear alerta
+  const alerta = document.createElement('div');
+  alerta.textContent = mensaje;
+  alerta.className = `mensaje ${tipo ? 'correcto' : 'error'}`;
+
+  formularioElement.insertBefore(alerta, document.querySelector('.form-group'));
+
+  // Eliminar alerta después de 3 segundos
+  setTimeout(() => {
+    alerta.remove();
+  }, 3000);
+};
+
+
 export {
   cargarYears,
   obtenerDatosFormulario,
-  validarDatosFormulario
+  validarDatosFormulario,
+  mostrarAlerta
 }
