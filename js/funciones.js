@@ -48,6 +48,38 @@ const mostrarAlerta = (mensaje, tipo) => {
   }, 3000);
 };
 
+// Cotizar seguro
+const cotizarSeguro = (datosFormulario) => {
+
+  const { marca, year, tipo } = datosFormulario;
+
+  // Base de seguro
+  let cantidad = 2000;
+
+  // Obtener marca
+  switch (marca) {
+    case '1':
+      cantidad *= 1.15;
+      break;
+    case '2':
+      cantidad *= 1.05;
+      break;
+    case '3':
+      cantidad *= 1.5;
+      break;
+    default:
+      break;
+  }
+
+  // Obtener year
+  const diferencia = new Date().getFullYear() - year;
+  cantidad -= ((diferencia * 3) * cantidad) / 100;
+
+  // Obtener tipo
+  cantidad = (tipo === 'basico') ? cantidad * 1.3 : cantidad * 1.5;
+
+  return { cantidad, marca, year, tipo };
+};
 
 // Mostrar spinner
 const mostrarSpinner = () => {
@@ -66,5 +98,6 @@ export {
   obtenerDatosFormulario,
   validarDatosFormulario,
   mostrarAlerta,
-  mostrarSpinner
+  mostrarSpinner,
+  cotizarSeguro
 }
