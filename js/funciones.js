@@ -41,7 +41,7 @@ const mostrarAlerta = (mensaje, tipo) => {
   // Crear alerta
   const alerta = document.createElement('div');
   alerta.textContent = mensaje;
-  alerta.className = `mensaje ${tipo ? 'correcto' : 'error'}`;
+  alerta.className = `mensaje mt-10 ${tipo ? 'correcto' : 'error'}`;
 
   formularioElement.insertBefore(alerta, document.querySelector('#resultado'));
 
