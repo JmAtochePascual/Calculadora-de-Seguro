@@ -1,4 +1,4 @@
-import { cargarYears, cotizarSeguro, mostrarAlerta, mostrarSpinner, obtenerDatosFormulario, validarDatosFormulario } from "./funciones.js";
+import { cargarYears, cotizarSeguro, mostrarAlerta, mostrarResultado, mostrarSpinner, obtenerDatosFormulario, validarDatosFormulario } from "./funciones.js";
 import { formularioElement } from "./selectores.js";
 
 
@@ -27,6 +27,8 @@ const init = async (vent) => {
   // Cotizar seguro
   const datosSeguro = cotizarSeguro(datosFormulario);
 
+  // Mostrar resultado
+  mostrarResultado(datosSeguro);
 };
 
 

@@ -93,11 +93,40 @@ const mostrarSpinner = () => {
     }, 3000);
   });
 };
+
+// Mostrar resultado 
+const mostrarResultado = (datosSeguro) => {
+
+  const { cantidad, marca, year, tipo } = datosSeguro;
+  const marcas = {
+    1: 'Americano',
+    2: 'Asiático',
+    3: 'Europeo'
+  }
+
+  const div = document.createElement('div');
+  div.className = 'resultado';
+
+  const texto = `
+    <p class="header">Resumen:</p>
+    <p class="font-bold">Marca: <span class="font-normal">${marcas[marca]}</span></p>
+    <p class="font-bold">Año: <span class="font-normal">${year}</span></p>
+    <p class="font-bold">Tipo: <span class="font-normal">${tipo}</span></p>
+    <p class="font-bold">Total:<span class="font-normal">${cantidad}</span></p>
+  `;
+
+  div.innerHTML = texto;
+
+  document.querySelector('#resultado').appendChild(div);
+};
+
+
 export {
   cargarYears,
   obtenerDatosFormulario,
   validarDatosFormulario,
   mostrarAlerta,
   mostrarSpinner,
-  cotizarSeguro
+  cotizarSeguro,
+  mostrarResultado
 }
