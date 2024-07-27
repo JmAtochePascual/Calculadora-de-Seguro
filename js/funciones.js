@@ -1,4 +1,4 @@
-import { selecYearElement } from "./selectores.js";
+import { selecMarcaElement, selecYearElement } from "./selectores.js";
 
 // Cargar years
 const cargarYears = () => {
@@ -16,6 +16,18 @@ const cargarYears = () => {
   }
 };
 
+
+// Obtener datos del formulario
+const obtenerDatosFormulario = () => {
+  return {
+    marca: selecMarcaElement.value,
+    year: selecYearElement.value,
+    tipo: document.querySelector('input[name="tipo"]:checked').value
+  };
+};
+
+
 export {
-  cargarYears
+  cargarYears,
+  obtenerDatosFormulario
 }

@@ -1,11 +1,11 @@
 // Selectores
 const selecMarcaElement = document.querySelector('#marca');
 const selecYearElement = document.querySelector('#year');
-const selectRadioElement = document.querySelector('input[name="tipo"]:checked');
+const formularioElement = document.querySelector('#cotizar-seguro');
 
 
 export {
   selecMarcaElement,
   selecYearElement,
-  selectRadioElement
+  formularioElement
 }
