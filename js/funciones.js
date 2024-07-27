@@ -1,4 +1,4 @@
-import { formularioElement, selecMarcaElement, selecYearElement } from "./selectores.js";
+import { formularioElement, selecMarcaElement, selecYearElement, spinnerElement } from "./selectores.js";
 
 // Cargar years
 const cargarYears = () => {
@@ -16,7 +16,6 @@ const cargarYears = () => {
   }
 };
 
-
 // Obtener datos del formulario
 const obtenerDatosFormulario = () => {
   return {
@@ -26,10 +25,8 @@ const obtenerDatosFormulario = () => {
   };
 };
 
-
 // Validar datos del formulario
 const validarDatosFormulario = (datosFormulario) => Object.values(datosFormulario).every(valor => valor !== '');
-
 
 // Mostrar alerta
 const mostrarAlerta = (mensaje, tipo) => {
@@ -38,13 +35,12 @@ const mostrarAlerta = (mensaje, tipo) => {
   const alertaExistente = document.querySelector('.mensaje');
   if (alertaExistente) return;
 
-
   // Crear alerta
   const alerta = document.createElement('div');
   alerta.textContent = mensaje;
   alerta.className = `mensaje ${tipo ? 'correcto' : 'error'}`;
 
-  formularioElement.insertBefore(alerta, document.querySelector('.form-group'));
+  formularioElement.insertBefore(alerta, document.querySelector('#resultado'));
 
   // Eliminar alerta después de 3 segundos
   setTimeout(() => {
@@ -53,9 +49,22 @@ const mostrarAlerta = (mensaje, tipo) => {
 };
 
 
+// Mostrar spinner
+const mostrarSpinner = () => {
+  return new Promise(resolve => {
+
+    spinnerElement.style.display = 'block';
+
+    setTimeout(() => {
+      spinnerElement.style.display = 'none';
+      resolve();
+    }, 3000);
+  });
+};
 export {
   cargarYears,
   obtenerDatosFormulario,
   validarDatosFormulario,
-  mostrarAlerta
+  mostrarAlerta,
+  mostrarSpinner
 }
