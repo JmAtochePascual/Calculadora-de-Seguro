@@ -57,6 +57,6 @@ Este proyecto está bajo la licencia [MIT](https://opensource.org/licenses/MIT).
 
 ## 🌐 Ver Proyecto en la WEB
 
-Puedes ver el proyecto en funcionamiento [aquí](https://jmatochepacual.github.io/Calculadora-de-Seguro/).
+Puedes ver el proyecto en funcionamiento [aquí](https://jmatochepascual.github.io/Calculadora-de-Seguro/).
 
 Todos los derechos reservados Calculadora de Seguro de Automóvil 2024 ©.
